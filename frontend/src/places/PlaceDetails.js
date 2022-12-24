@@ -94,17 +94,38 @@ function PlaceDetails() {
 				{stars} stars
 			</h3>
 		)
+		  
 		comments = place.comments.map(comment => {
 			return (
-				<CommentCard key={comment.commentId} comment={comment} onDelete={() => deleteComment(comment)} />
+				<CommentCard 
+					key={comment.commentId} 
+					comment={comment} 
+					onDelete={() => deleteComment(comment)} 
+				/>
 			)
 		})
 	}
-
-
+	
+	let placeActions = null
+	
+	if (currentUser?.role === 'admin') {
+		placeActions = (
+			<>
+				<a className="btn btn-warning" onClick={editPlace}>
+					Edit
+				</a>
+				<button type="submit" className="btn btn-danger" onClick={deletePlace}>
+					Delete
+				</button>
+			</>
+		)
+	}
+	
 	return (
 		<main>
 			<div className="row">
+				  
+	
 				<div className="col-sm-6">
 					<img style={{ maxWidth: 200 }} src={place.pic} alt={place.name} />
 					<h3>
@@ -128,6 +149,7 @@ function PlaceDetails() {
 						Serving {place.cuisines}.
 					</h4>
 					<br />
+					{placeActions}
 					<a className="btn btn-warning" onClick={editPlace}>
 						Edit
 					</a>{` `}
