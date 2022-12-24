@@ -17,6 +17,7 @@ function LoginForm() {
 
       
   
+    ___
     async function handleSubmit(e) {
         const response = await fetch(`http://localhost:5000/authentication/`, {
             method: 'POST',
@@ -30,20 +31,16 @@ function LoginForm() {
     
         if (response.status === 200) {
             setCurrentUser(data.user)
+            console.log(data.token)
             history.push(`/`)
         } else {
             setErrorMessage(data.message)
         }
-    }
-      
+    
     
     console.log(data)
 }
   
-
-       
-
-    }
 
     return (
         <main>
@@ -87,6 +84,6 @@ function LoginForm() {
             </form>
         </main>
     )
-}
+
 
 export default LoginForm
