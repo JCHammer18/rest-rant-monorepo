@@ -3,6 +3,19 @@ const db = require("../models")
 const bcrypt = require('bcrypt')
 
 const { User } = db
+___
+router.get('/profile', async (req, res) => {
+    try {
+        let user = await User.findOne({
+            where: {
+                userId:  
+            }
+        })
+        res.json(user)
+    } catch {
+        res.json(null)
+    }
+})
 
   
 router.post('/', async (req, res) => {
@@ -24,6 +37,8 @@ router.post('/', async (req, res) => {
         } else {
             res.json({ user })
         }
+
+        
     })
     
 
